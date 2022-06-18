@@ -1,7 +1,6 @@
 # create read update delete (CRUD)
 from ctypes.wintypes import INT
 
-
 print("welcome to the todo list")
 Todos=["go to school","come home"]
 def read():
@@ -13,7 +12,7 @@ def create():
     todo = input(" -please add a task here- ")
     Todos.append(todo)
 
-def delete():1
+def delete():
     position = input("- choose which number on the todo you want to delete - ")
     index=int(position)-1
     todo = Todos[index]

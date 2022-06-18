@@ -1,7 +1,5 @@
 # create read update delete (CRUD)
 
-
-
 print("_____welcome to the todo list_____")
 import mysql.connector 
 mysqldb = mysql.connector.connect(
