@@ -1,0 +1,16 @@
+import random 
+
+val=random.random()
+print(val)
+val=random.randint(10, 20)
+print(val)
+val=random.randint(10, 20)
+print(val)
+val=random.randint(10, 20)
+print(val)
+val=random.randint(10, 20)
+print(val)
+val=random.randint(10, 20)
+print(val)
+val=random.randint(10, 20)
+print(val)
