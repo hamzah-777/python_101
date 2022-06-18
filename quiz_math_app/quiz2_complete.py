@@ -1,5 +1,5 @@
+import random
 
-import random 
 def getsum():
     num1=random.randint(50, 100)
     num2=random.randint(50, 100)
@@ -16,7 +16,6 @@ def getsum():
     else:
         print("sorry, correct answer is", sum)
 
-#getsum()
 
 def getsub():
     num1=random.randint(50, 100)
@@ -34,7 +33,7 @@ def getsub():
     else:
         print("sorry, correct answer is", sub)
 
-#getsub()
+
 def getmulti():
     num1=random.randint(1, 12)
     num2=random.randint(1, 12)
@@ -51,7 +50,6 @@ def getmulti():
     else:
         print("sorry, correct answer is", multi)
 
-#getmulti()
 
 def getdiv():
     num1=random.randint(1, 10)
@@ -70,7 +68,12 @@ def getdiv():
     else:
         print("sorry, correct answer is", num1)
 
+
+#getsum()
+#getsub()
+#getmulti()
 #getdiv()
+
 for i in range(10):
     print("question number: ",i+1)
     qwerty=random.randint(0,4)

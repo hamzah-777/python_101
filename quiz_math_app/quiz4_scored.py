@@ -1,6 +1,4 @@
-
 import random
-from statistics import multimode 
 
 def getquestion(qtype):
     if qtype=='sum':
@@ -8,7 +6,7 @@ def getquestion(qtype):
         max=100
         num1=random.randint(min, max)
         num2=random.randint(min, max)
-     
+    
         correct_answer=num1+num2
         print(num1," + ", num2," = ?")
 
@@ -17,7 +15,7 @@ def getquestion(qtype):
         max=100
         num1=random.randint(min, max)
         num2=random.randint(min, max)
-     
+    
         correct_answer=num1-num2
         print(num1," - ", num2," = ?")
 
@@ -26,7 +24,7 @@ def getquestion(qtype):
         max=12
         num1=random.randint(min, max)
         num2=random.randint(min, max)
-     
+    
         correct_answer=num1*num2
         print(num1," * ", num2," = ?")
 
