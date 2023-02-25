@@ -1,6 +1,5 @@
 
-print("Hello world")
-print('welcome to my programme')
+print('Hello welcome to my programme')
 print("here's a haiku")
 print('''
  The Werewolf 
@@ -14,16 +13,16 @@ alive to a full moon then…
 var1=600
 var2=90
 sum=var1+var2
-
+print("here's some math")
 #sum of 100 & 200 is 300
 print("the sum of",var1, '&', var2, 'is', sum)
 
-print("the sum of {} & {} is {} \n\n".format(var1, var2, sum ))
+print("the sum of {} & {} is {} \n".format(var1, var2, sum ))
 
 
 
 
-
+print("here's the creator")
 name='Hamzah'
 age=11
 adult_child=""
