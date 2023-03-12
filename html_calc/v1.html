@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Calc</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body class="m-4">
+    <h1 class="bg-warning">hello calc v1</h1>
+    <br />
+
+
+    <input type="number" id="in1" placeholder="input 1" />
+    <input type="number" id="in2" placeholder="input 2" />
+
+    <br /><br />
+    <input type="button" value="+" id="btn_plus" class="mx-2" onclick="do_plus()" />
+    <input type="button" value="-" id="btn_min" class="mx-2" onclick="do_min()" />
+    <input type="button" value="x" id="btn_multi" class="mx-2" onclick="do_multi()" />
+    <input type="button" value="/" id="btn_div" class="mx-2" onclick="do_div()" />
+
+    <input type="button" value="Reload" id="" class="mx-2" onclick="location.reload()" />
+
+
+    <br /><br />
+    <input type="text" id="out" readonly />
+
+    <script>
+        function do_plus() {
+            let val1 = document.getElementById("in1").value;
+            let val2 = document.getElementById("in2").value;
+
+            let result = parseInt(val1) + parseInt(val2);
+            document.getElementById("out").value = result;
+        }
+        
+        function do_min() {
+            let val1 = document.getElementById("in1").value;
+            let val2 = document.getElementById("in2").value;
+
+            let result = parseInt(val1) - parseInt(val2);
+            document.getElementById("out").value = result;
+        }
+        
+        function do_multi() {
+            let val1 = document.getElementById("in1").value;
+            let val2 = document.getElementById("in2").value;
+
+            let result = parseInt(val1) * parseInt(val2);
+            document.getElementById("out").value = result;
+        }
+        
+        function do_div() {
+            let val1 = document.getElementById("in1").value;
+            let val2 = document.getElementById("in2").value;
+
+            let result = parseInt(val1) / parseInt(val2);
+            document.getElementById("out").value = result;
+        }
+    </script>
+</body>
+
+</html>
