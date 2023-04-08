@@ -10,12 +10,25 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <style>
+.bg-purple{
+  background-color: rgb(82, 2, 125);
+}
+
+    </style>
+
+<style>
+  .bg-pink{
+    background-color: rgb(246, 7, 119);
+  }
+  
+      </style>
   </head>
   <body>
     <h1>My Calculator</h1>
 
     <div class="p-5">
-      <div class="rounded bg-info p-3 shadow-lg rounded" style="width: 400px">
+      <div class="rounded bg-dark p-3 shadow-lg rounded" style="width: 390px">
         <div class="row">
           <div class="col-10">
             <input
@@ -25,10 +38,10 @@
               id="evaluation_field"
             />
           </div>
-          <div class="col-2 d-grid">
+          <div class="col-2 d-grid px-1">
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn bg-pink"
               onclick="do_clear()"
             >
               C
@@ -36,71 +49,88 @@
           </div>
         </div>
 
-        <div class="row my-2">
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">1</button>
+        <div class="row my-2 py-2">
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-light" onclick="enter(1)">1</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">2</button>
+          <div class="col-3 d-grid px-1 ">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(2)">2</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">3</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(3)">3</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">/</button>
-          </div>
-        </div>
-
-        <div class="row my-2">
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">4</button>
-          </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">5</button>
-          </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">6</button>
-          </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">-</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter('/')">/</button>
           </div>
         </div>
 
-        <div class="row my-2">
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">7</button>
+        <div class="row my-2 py-2">
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(4)">4</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">8</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(5)">5</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">9</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(6)">6</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">+</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter('-')">-</button>
           </div>
         </div>
 
-        <div class="row my-2">
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">.</button>
+        <div class="row my-2 py-2">
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(7)">7</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">0</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(8)">8</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">=</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(9)">9</button>
           </div>
-          <div class="col-3 d-grid">
-            <button type="button" class="btn btn-primary">/</button>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter('+')">+</button>
           </div>
         </div>
+
+        <div class="row my-2 py-2 mb-0 pb-0">
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter('.')">.</button>
+          </div>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-purple text-white" onclick="enter(0)">0</button>
+          </div>
+          <div class="col-3 d-grid px-1">
+            <button type="button" class="btn bg-pink" onclick="do_eval()"> =</button>
+          </div>
+          <div class="col-3 d-grid px-1 ">
+            <button type="button" class="btn bg-purple text-white" onclick="enter('*')">*</button>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
     <script>
       function do_clear() {
         document.getElementById("evaluation_field").value = "";
+        document.getElementById("result").value = "";
+        console.log("you cleared input");
+      }
+
+      function enter(my_value){
+        console.log("you entered:", my_value);
+        document.getElementById("evaluation_field").value = document.getElementById("evaluation_field").value + my_value;
+      }
+
+      function do_eval(){
+        let to_eval = document.getElementById("evaluation_field").value;
+            let result = eval(to_eval);
+            document.getElementById("evaluation_field").value = result;
+
+            console.log("result: " + result);
       }
     </script>
 
