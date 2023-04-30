@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hangman Game</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container p-5">
+      <h1>Hangman Game</h1>
+      <h3>
+        Guess the word:
+        <span id="show_text" style="letter-spacing: 0.5em">word here</span>
+      </h3>
+      <div class="row">
+        <div class="col-4">
+          <input
+            maxlength="1"
+            style="border-color: green; border-width: 3px"
+            type="text"
+            class="form-control text-success"
+            placeholder="Enter a Letter"
+            id="answer"
+          />
+        </div>
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-block btn-success col"
+            id="submit_btn"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="btn btn-block btn-warning col"
+            id="reset_btn"
+            onclick="reset_game();"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <img src="./p0.jpg" alt="" id="my_img" />
+      <marquee>
+        <h3>
+          Guessed letters:
+          <span id="guessed_text" style="letter-spacing: 0.5em">word here</span>
+        </h3>
+      </marquee>
+    </div>
+  </body>
+  <script>
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let show_word = "";
+    let game_complete = true;
+
+    let strikes = Number(localStorage.getItem("strikes"));
+    if (!strikes) {
+      strikes = 0;
+    }
+    let secret_word = localStorage.getItem("secret_word");
+    if (!secret_word) {
+      secret_word = get_secret_word();
+    }
+    let already_guessed = localStorage.getItem("already_guessed");
+    if (!already_guessed) {
+      already_guessed = "";
+    }
+
+    for (let i = 0; i < secret_word.length; i++) {
+      if (already_guessed.includes(secret_word[i])) {
+        show_word = show_word + secret_word[i];
+      } else {
+        show_word = show_word + "_";
+        game_complete = false;
+      }
+    }
+
+    $("#show_text").text(`${show_word}`);
+    $("#my_img").attr("src", `./p_${strikes}.jpg`);
+    $("#guessed_text").text(`${already_guessed}`);
+
+    if (strikes >= 7) {
+      error = "too bad! word was: " + secret_word;
+      alert(error);
+      reset_game();
+    }
+    if (game_complete == true) {
+      error = "You have won!";
+      alert(error);
+      reset_game();
+    }
+
+    $("#submit_btn").click(function () {
+      console.log("submit");
+
+      let error = "";
+      let my_input = $("#answer").val().toLowerCase();
+
+      if (strikes >= 7) {
+        error = "You have run out of attempts";
+      } else if (!alphabet.includes(my_input)) {
+        error = "unexpected input. Please enter a letter";
+      } else if (already_guessed.includes(my_input)) {
+        error = "already guessed this. Please enter a different letter";
+      } else {
+        if (!secret_word.includes(my_input)) {
+          strikes++;
+        }
+        already_guessed = already_guessed + my_input;
+      }
+
+      localStorage.setItem("secret_word", String(secret_word));
+      localStorage.setItem("strikes", String(strikes));
+      localStorage.setItem("already_guessed", String(already_guessed));
+
+      if (error != "") {
+        alert(error);
+      }
+
+      window.location.reload();
+    });
+
+    function reset_game() {
+      let new_secret_word = get_secret_word();
+      localStorage.setItem("secret_word", String(new_secret_word));
+      localStorage.setItem("strikes", String(0));
+      localStorage.setItem("already_guessed", String(""));
+      window.location.reload();
+    }
+
+    function get_secret_word() {
+      let word_set = [
+        "abruptly",
+        "absurd",
+        "abyss",
+        "affix",
+        "askew",
+        "avenue",
+        "awkward",
+        "axiom",
+        "azure",
+        "bagpipes",
+        "bandwagon",
+        "banjo",
+        "bayou",
+        "beekeeper",
+        "bikini",
+        "blitz",
+        "blizzard",
+        "boggle",
+        "bookworm",
+        "boxcar",
+        "boxful",
+        "buckaroo",
+        "buffalo",
+        "buffoon",
+        "buxom",
+        "buzzard",
+        "buzzing",
+        "buzzwords",
+        "caliph",
+        "cobweb",
+        "cockiness",
+        "croquet",
+        "crypt",
+        "curacao",
+        "cycle",
+        "daiquiri",
+        "dirndl",
+        "disavow",
+        "dizzying",
+        "duplex",
+        "dwarves",
+        "embezzle",
+        "equip",
+        "espionage",
+        "euouae",
+        "exodus",
+        "faking",
+        "fishhook",
+        "fixable",
+        "fjord",
+        "flapjack",
+        "flopping",
+        "fluffiness",
+        "flyby",
+        "foxglove",
+        "frazzled",
+        "frizzled",
+        "fuchsia",
+        "funny",
+        "gabby",
+        "galaxy",
+        "galvanize",
+        "gazebo",
+        "giaour",
+        "gizmo",
+        "glowworm",
+        "glyph",
+        "gnarly",
+        "gnostic",
+        "gossip",
+        "grogginess",
+        "haiku",
+        "haphazard",
+        "hyphen",
+        "iatrogenic",
+        "icebox",
+        "injury",
+        "ivory",
+        "ivy",
+        "jackpot",
+        "jaundice",
+        "jawbreaker",
+        "jaywalk",
+        "jazziest",
+        "jazzy",
+        "jelly",
+        "jigsaw",
+        "jinx",
+        "jiujitsu",
+        "jockey",
+        "jogging",
+        "joking",
+        "jovial",
+        "joyful",
+        "juicy",
+        "jukebox",
+        "jumbo",
+        "kayak",
+        "kazoo",
+        "keyhole",
+        "khaki",
+        "kilobyte",
+        "kiosk",
+        "kitsch",
+        "kiwifruit",
+        "klutz",
+        "knapsack",
+        "larynx",
+        "lengths",
+        "lucky",
+        "luxury",
+        "lymph",
+        "marquis",
+        "matrix",
+        "megahertz",
+        "microwave",
+        "mnemonic",
+        "mystify",
+        "naphtha",
+        "nightclub",
+        "nowadays",
+        "numbskull",
+        "nymph",
+        "onyx",
+        "ovary",
+        "oxidize",
+        "oxygen",
+        "pajama",
+        "peekaboo",
+        "phlegm",
+        "pixel",
+        "pizazz",
+        "pneumonia",
+        "polka",
+        "pshaw",
+        "psyche",
+        "puppy",
+        "puzzling",
+        "quartz",
+        "queue",
+        "quips",
+        "quixotic",
+        "quiz",
+        "quizzes",
+        "quorum",
+        "razzmatazz",
+        "rhubarb",
+        "rhythm",
+        "rickshaw",
+        "schnapps",
+        "scratch",
+        "shiv",
+        "snazzy",
+        "sphinx",
+        "spritz",
+        "squawk",
+        "staff",
+        "strength",
+        "strengths",
+        "stretch",
+        "stronghold",
+        "stymied",
+        "subway",
+        "swivel",
+        "syndrome",
+        "thriftless",
+        "thumbscrew",
+        "topaz",
+        "transcript",
+        "transgress",
+        "transplant",
+        "triphthong",
+        "twelfth",
+        "twelfths",
+        "unknown",
+        "unworthy",
+        "unzip",
+        "uptown",
+        "vaporize",
+        "vixen",
+        "vodka",
+        "voodoo",
+        "vortex",
+        "voyeurism",
+        "walkway",
+        "waltz",
+        "wave",
+        "wavy",
+        "waxy",
+        "wellspring",
+        "wheezy",
+        "whiskey",
+        "whizzing",
+        "whomever",
+        "wimpy",
+        "witchcraft",
+        "wizard",
+        "woozy",
+        "wristwatch",
+        "wyvern",
+        "xylophone",
+        "yachtsman",
+        "yippee",
+        "yoked",
+        "youthful",
+        "yummy",
+        "zephyr",
+        "zigzag",
+        "zigzagging",
+        "zilch",
+        "zipper",
+        "zodiac",
+        "zombie",
+      ];
+
+      var randomIndex = Math.floor(Math.random() * word_set.length);
+      var randomElement = word_set[randomIndex];
+      return randomElement;
+    }
+  </script>
+</html>
