@@ -8,17 +8,14 @@
     <title>Guess the Number</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
- 
-<script
-src="https://code.jquery.com/jquery-3.6.4.min.js"
-integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-crossorigin="anonymous"
-></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -27,7 +24,7 @@ crossorigin="anonymous"
 
         <h1>Guess the Number</h1>
 
-        
+
         <div class="col-6 my-4 " style="font-family: lobster, cursive"> Please Enter Your Guess: </div>
 
         <div class="row">
@@ -35,61 +32,65 @@ crossorigin="anonymous"
                 <input class="form-control" type="text" placeholder="Enter Number Here" id="my_answer" />
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-12 col-xs-7 col-sm-6 col-md-5 col-lg-4 mt-2">
                 <h4 id="msg">Take a guess</h4>
             </div>
         </div>
-        
+
         <div class="my-4">
-            <button type="button" class= "btn btn-primary col-4" onclick="do_submit()">
+            <button type="button" class="btn btn-primary col-4" onclick="do_submit()">
                 Submit
-                </button>
+            </button>
 
 
-            <button type="button" class= "btn btn-secondary col-4" onclick="do_reset()">
+            <button type="button" class="btn btn-secondary col-4" onclick="do_reset()">
                 Reset
-                </button>
+            </button>
 
         </div>
 
         <script>
             //number to guess:
-        num1 = Math.floor(Math.random() * 1000 + 1);
-    console.log("my random number is:", num1);
+            num1 = Math.floor(Math.random() * 1000 + 1);
+            console.log("my random number is:", num1);
 
-function do_submit(){
-    // what do we do here???
+            function do_submit() {
+                // what do we do here???
 
-    //1st get number from input field to javascript side
-    console.log("You entered: ", $('#my_answer').val());
+                //1st get number from input field to javascript side
+                console.log("You entered: ", $('#my_answer').val());
 
-    // save my guess to a temp variable
-    let my_answer = $('#my_answer').val();
+                // save my guess to a temp variable
+                let my_answer = $('#my_answer').val();
 
-    // check if number entered is less or more than number to guess
-    // hint: you have to use if- else statement
+                // check if number entered is less or more than number to guess
+                // hint: you have to use if- else statement
 
-    let msg = 'Take a guess bro';
-    if (num1 == my_answer){
-        // console.log("You answer was CORRECT!!");
-        msg = `You answer was CORRECT!!`;
-    } else if (num1 > my_answer) {
-        // console.log("Answer is HIGHER");
-        msg = `Answer is HIGHER`;
-    } else if (num1 < my_answer) {
-        // console.log("Answer is LOWER");
-        msg = `Answer is LOWER`;
-    } else {
-        // console.log("Please enter a number");
-        msg = `Please enter a number`;
-    }
+                let msg = 'Take a guess bro';
+                if (num1 == my_answer) {
+                    // console.log("You answer was CORRECT!!");
+                    msg = `Your answer was CORRECT!!`;
+                } else if (num1 > my_answer) {
+                    // console.log("Answer is HIGHER");
+                    msg = `Answer is HIGHER`;
+                } else if (num1 < my_answer) {
+                    // console.log("Answer is LOWER");
+                    msg = `Answer is LOWER`;
+                } else {
+                    // console.log("Please enter a number");
+                    msg = `Please enter a number`;
+                }
 
-    $('#msg').html(msg);
+                $('#msg').html(msg);
 
-}
+            } //end: do_submit
 
+            function do_reset() {
+
+                window.location.reload();
+            }
         </script>
 
 </body>
