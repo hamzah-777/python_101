@@ -1,251 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <style></style>
-  </head>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
-  <body>
-    <h2 class="text-center">Quiz App</h2>
+  <style></style>
+</head>
 
-    <div class="d-flex justify-content-center">
-      <div
-        class="rounded bg-light p-3"
-        style="min-width: 600px; box-shadow: 0px 0px 15px #7e7c7c"
-      >
-        <div class="text-success text-end">
-          <h4 id="score_text">Score: 2 / 4</h4>
-          <br />
+<body>
+  <h2 class="text-center">Quiz App</h2>
 
-          <div class="row">
-            <div class="col-6">
-              <h2 id="question_line_1">What Is 30+5</h2>
-            </div>
-            <h2 id="ans_1" class="col-3 d-none">✅❌</h2>
-            <div class="col">
-              <input
-                style="border-color: rgb(90, 141, 90); border-width: 3px"
-                type="text"
-                class="form-control text-success"
-                placeholder="Enter Your Answer"
-                id="my_answer_1"
-              />
-            </div>
+  <div class="d-flex justify-content-center">
+    <div class="rounded bg-light p-3" style="min-width: 600px; box-shadow: 0px 0px 15px #7e7c7c">
+      <div class="text-success text-end">
+        <div class="row">
+          <h3 class="col-6 text-secondary" id="counter_text">counter:</h3>
+          <h4 class="col-6" id="score_text">Score: 2 / 4</h4>
+        </div>
+
+
+
+        <div class="row ">
+          <div class="col-6 ">
+            <h2 id="question_line_1">What Is 30+5</h2>
           </div>
-
-          <div class="row">
-            <div class="col-6">
-              <h2 id="question_line_2">What Is 30-5</h2>
-            </div>
-            <h2 id="ans_2" class="col-3 d-none">✅❌</h2>
-            <div class="col">
-              <input
-                style="border-color: rgb(90, 141, 90); border-width: 3px"
-                type="text"
-                class="form-control text-success"
-                placeholder="Enter Your Answer"
-                id="my_answer_2"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-6">
-              <h2 id="question_line_3">What Is 30*5</h2>
-            </div>
-            <h2 id="ans_3" class="col-3 d-none">✅❌</h2>
-            <div class="col">
-              <input
-                style="border-color: rgb(90, 141, 90); border-width: 3px"
-                type="text"
-                class="form-control text-success"
-                placeholder="Enter Your Answer"
-                id="my_answer_3"
-              />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-6">
-              <h2 id="question_line_4">What Is 30/5</h2>
-            </div>
-            <h2 id="ans_4" class="col-3 d-none">✅❌</h2>
-            <div class="col ">
-              <input
-                style="border-color: rgb(90, 141, 90); border-width: 3px"
-                type="text"
-                class="form-control text-success"
-                placeholder="Enter Your Answer"
-                id="my_answer_4"
-              />
-            </div>
+          <h2 id="ans_1" class="col-3 d-none">✅❌</h2>
+          <div class="col">
+            <input style="border-color: rgb(90, 141, 90); border-width: 3px" type="text"
+              class="form-control text-success" placeholder="Enter Your Answer" id="my_answer_1" />
           </div>
         </div>
-        <br />
 
         <div class="row">
-          <button
-            id="btn-submit"
-            type="button"
-            class="btn btn-success col"
-            onclick="do_submit()"
-          >
-            Submit
-          </button>
-          <button
-            id="btn-next"
-            type="button"
-            class="btn btn-warning col d-none"
-            onclick="window.location.reload()"
-          >
-            Next
-          </button>
-          <button
-          id="btn-reset"
-            type="button"
-            class="btn btn-danger col-3"
-            onclick="reset_game()"
-          >
-            Reset
-          </button>
+          <div class="col-6">
+            <h2 id="question_line_2">What Is 30-5</h2>
+          </div>
+          <h2 id="ans_2" class="col-3 d-none">✅❌</h2>
+          <div class="col">
+            <input style="border-color: rgb(90, 141, 90); border-width: 3px" type="text"
+              class="form-control text-success" placeholder="Enter Your Answer" id="my_answer_2" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <h2 id="question_line_3">What Is 30*5</h2>
+          </div>
+          <h2 id="ans_3" class="col-3 d-none">✅❌</h2>
+          <div class="col">
+            <input style="border-color: rgb(90, 141, 90); border-width: 3px" type="text"
+              class="form-control text-success" placeholder="Enter Your Answer" id="my_answer_3" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <h2 id="question_line_4">What Is 30/5</h2>
+          </div>
+          <h2 id="ans_4" class="col-3 d-none">✅❌</h2>
+          <div class="col ">
+            <input style="border-color: rgb(90, 141, 90); border-width: 3px" type="text"
+              class="form-control text-success" placeholder="Enter Your Answer" id="my_answer_4" />
+          </div>
         </div>
       </div>
+      <br />
+
+      <div class="row">
+        <button id="btn-submit" type="button" class="btn btn-success col" onclick="do_submit()">
+          Submit
+        </button>
+        <button id="btn-next" type="button" class="btn btn-warning col d-none" onclick="go_next()">
+          Next
+        </button>
+        <button id="btn-reset" type="button" class="btn btn-danger col-3" onclick="reset_game()">
+          Reset
+        </button>
+      </div>
     </div>
-    <img src="jquery.png" class="w-100" alt="" />
-    <script>
-      let num1_array = [];
-      let num2_array = [];
-      let answer_array = [];
+  </div>
+  <img src="jquery.png" class="w-100 d-none" alt="" />
+  <script>
+    let num1_array = [];
+    let num2_array = [];
+    let answer_array = [];
 
-      let num1;
-      let num2;
-      let operators_array = ["+", "-", "*", "/"];
+    let num1;
+    let num2;
+    let operators_array = ["+", "-", "*", "/"];
 
+    for (let i = 1; i < 5; i++) {
+      // console.log('hey! counter is: ', i);
+
+      // get 2 random numbers
+      num1 = Math.floor(Math.random() * 10 + 10);
+      num2 = Math.floor(Math.random() * 10 + 1);
+
+      //special case for division question
+      if (operators_array[i - 1] === "/") {
+        num1 = num1 * num2;
+      }
+
+      $("#question_line_" + i).html(
+        "What is " + num1 + operators_array[i - 1] + num2
+      );
+
+      let temp_question = num1 + operators_array[i - 1] + num2;
+      let answer = eval(temp_question);
+
+      num1_array.push(num1);
+      num2_array.push(num2);
+      answer_array.push(answer);
+
+      console.log(temp_question, "=", answer);
+    }
+
+    // const questionElement = document.getElementById("question_line");
+    // questionElement.innerText = `What is ${num1} + ${num2}?`;
+
+    // $('#question_line_1').html('What is '+ num1 + ' + ' +  num2);
+    // $('#question_line_2').html('What is '+ num1 + ' - ' +  num2);
+    // $('#question_line_3').html('What is '+ num1 + ' * ' +  num2);
+    // $('#question_line_4').html('What is '+ num1 + ' / ' +  num2);
+
+    // >>> localStorage is something like cache or cookies. we use it to save stuff so it don't get lost when we refresh.
+    let my_score = Number(localStorage.getItem("my_score"));
+    if (!my_score) {
+      my_score = 0;
+    }
+    let my_count = Number(localStorage.getItem("my_count"));
+    if (!my_count) {
+      my_count = 0;
+    }
+
+    // let scoreElement = document.getElementById("score_text");
+    // scoreElement.textContent = `score : ${my_score}`;
+
+    $("#score_text").html(`score : ${my_score} / ${my_count * 4}`);
+    // $('#score_text').html('score : ' + my_score);
+
+    $("#counter_text").html(`set number : ${my_count+1} / 5`);
+    function do_submit() {
+      // >>> hide submit button & show next button
+      $("#btn-submit").addClass('d-none');
+      $("#btn-next").removeClass('d-none');
+
+      $("#ans_4").removeClass('d-none');
+      $("#ans_3").removeClass('d-none');
+      $("#ans_2").removeClass('d-none');
+      $("#ans_1").removeClass('d-none');
+
+      my_count = my_count + 1;
+      localStorage.setItem("my_count", String(my_count));
+
+      console.log("hey do_submit was called just now", my_count);
+      // const my_input = document.getElementById("my_answer");
+      // console.log("answer is", answer);
+
+      // console.log("my answer is", $('#my_answer_1').val());
       for (let i = 1; i < 5; i++) {
-        // console.log('hey! counter is: ', i);
+        // THIS LOOP will run 4 times... with i being 1,2,3,4
 
-        // get 2 random numbers
-        num1 = Math.floor(Math.random() * 10 + 10);
-        num2 = Math.floor(Math.random() * 10 + 1);
+        //my_answer_1, my_answer_2....
+        if (answer_array[i - 1] == +$("#my_answer_" + i).val()) {
+          //answer was correct!!
+          $("#ans_" + i).html(`✅`);
 
-        //special case for division question
-        if (operators_array[i - 1] === "/") {
-          num1 = num1 * num2;
+          console.log("answer was correct");
+          my_score = my_score + 1;
+          update_score(my_score);
+          $("#score_text").html(`score : ${my_score} / ${my_count * 4}`);
+        } else {
+          //answer was wrong
+          $("#ans_" + i).html(`❌ ` + answer_array[i - 1]);
+
+          console.log("answer should have been:", answer_array[i - 1]);
+          // my_score = my_score - 1;
+          // update_score(my_score);
+          $("#score_text").html(`score : ${my_score} / ${my_count * 4}`);
         }
+      } //end of: for loop
 
-        $("#question_line_" + i).html(
-          "What is " + num1 + operators_array[i - 1] + num2
-        );
 
-        let temp_question = num1 + operators_array[i - 1] + num2;
-        let answer = eval(temp_question);
+      // window.location.reload();
+    }
+    function go_next() {
 
-        num1_array.push(num1);
-        num2_array.push(num2);
-        answer_array.push(answer);
-
-        console.log(temp_question, "=", answer);
+      if (my_count >= 5) {
+        alert("GAME OVER. Score: " + my_score);
+        reset_game();
       }
 
-      // const questionElement = document.getElementById("question_line");
-      // questionElement.innerText = `What is ${num1} + ${num2}?`;
 
-      // $('#question_line_1').html('What is '+ num1 + ' + ' +  num2);
-      // $('#question_line_2').html('What is '+ num1 + ' - ' +  num2);
-      // $('#question_line_3').html('What is '+ num1 + ' * ' +  num2);
-      // $('#question_line_4').html('What is '+ num1 + ' / ' +  num2);
+      window.location.reload();
+    }
 
-      // >>> localStorage is something like cache or cookies. we use it to save stuff so it don't get lost when we refresh.
-      let my_score = Number(localStorage.getItem("my_score"));
-      if (!my_score) {
-        my_score = 0;
-      }
-      let my_count = Number(localStorage.getItem("my_count"));
-      if (!my_count) {
-        my_count = 0;
-      }
+    function update_score(my_score) {
+      localStorage.setItem("my_score", String(my_score));
 
-      // let scoreElement = document.getElementById("score_text");
-      // scoreElement.textContent = `score : ${my_score}`;
+      console.log("Score updated");
+    }
 
-      $("#score_text").html(`score : ${my_score} / ${my_count * 4}`);
-      // $('#score_text').html('score : ' + my_score);
+    function reset_game() {
+      //this function is used to reset the game score
+      update_score(0); //updating score
+      localStorage.setItem("my_count", 0); //updating count
 
-      function do_submit() {
-        // >>> hide submit button & show next button
-        $("#btn-submit").addClass('d-none');
-        $("#btn-next").removeClass('d-none');
-        
-        $("#ans_4").removeClass('d-none');
-        $("#ans_3").removeClass('d-none');
-        $("#ans_2").removeClass('d-none');
-        $("#ans_1").removeClass('d-none');
+      window.location.reload(); //this is reloading page
+    }
+  </script>
 
-        my_count = my_count + 1;
-        localStorage.setItem("my_count", String(my_count));
+  <!-- <br /><br /><br /><br /><br /><br /> -->
+  <!-- <img src="addition_ template.png" alt="" /> -->
+</body>
 
-        console.log("hey do_submit was called just now");
-        // const my_input = document.getElementById("my_answer");
-        // console.log("answer is", answer);
-
-        // console.log("my answer is", $('#my_answer_1').val());
-        for (let i = 1; i < 5; i++) {
-          // THIS LOOP will run 4 times... with i being 1,2,3,4
-
-          //my_answer_1, my_answer_2....
-          if (answer_array[i - 1] == +$("#my_answer_" + i).val()) {
-            //answer was correct!!
-            $("#ans_" + i).html(`✅`);
-
-            console.log("answer was correct");
-            my_score = my_score + 1;
-            update_score(my_score);
-            $("#score_text").html(`score : ${my_score} / ${my_count * 4}`);
-          } else {
-            //answer was wrong
-            $("#ans_" + i).html(`❌ ` + answer_array[i-1]);
-
-            console.log("answer should have been:", answer_array[i - 1]);
-            // my_score = my_score - 1;
-            // update_score(my_score);
-            $("#score_text").html(`score : ${my_score} / ${my_count * 4}`);
-          }
-        } //end of: for loop
-
-        // window.location.reload();
-      }
-
-      function update_score(my_score) {
-        localStorage.setItem("my_score", String(my_score));
-
-        console.log("Score updated");
-      }
-
-      function reset_game() {
-        //this function is used to reset the game score
-        update_score(0); //updating score
-        localStorage.setItem("my_count", 0); //updating count
-
-        window.location.reload(); //this is reloading page
-      }
-    </script>
-
-    <!-- <br /><br /><br /><br /><br /><br /> -->
-    <!-- <img src="addition_ template.png" alt="" /> -->
-  </body>
 </html>
