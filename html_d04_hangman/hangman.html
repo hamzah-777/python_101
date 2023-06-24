@@ -15,21 +15,24 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body>
-    <div class="container p-5">
+  <body style="">
+    <div class="container p-5" style="background-image: url('https://media.giphy.com/media/ybQIv0CsYm1XY9A8Dm/giphy.gif'); background-repeat:no-repeat; background-position:right bottom; ">
       <h1>Hangman Game</h1>
       <h3>
         Guess the word:
         <span id="show_text" style="letter-spacing: 0.5em">word here</span>
       </h3>
       <div class="row">
-        <div class="col-4">
+        <div class="col-auto">
+          <label for="answer" class="col-form-label">Enter a Letter:</label>
+        </div>
+        <div class="col-auto">
           <input
             maxlength="1"
-            style="border-color: green; border-width: 3px"
+            style="border-color: green; border-width: 3px; max-width: 6em;"
             type="text"
             class="form-control text-success"
-            placeholder="Enter a Letter"
+            placeholder=""
             id="answer"
           />
         </div>
@@ -52,13 +55,11 @@
         </div>
       </div>
 
-      <img src="./p_0.jpg" alt="" id="my_img" />
-      <marquee>
+      <img src="./p_0.png" alt="" id="my_img" />
         <h3>
           Guessed letters:
           <span id="guessed_text" style="letter-spacing: 0.5em">word here</span>
         </h3>
-      </marquee>
     </div>
   </body>
   <script>
@@ -66,14 +67,17 @@
     let show_word = "";
     let game_complete = true;
 
+    //get wrong guesses player has had from cookie/storage
     let strikes = Number(localStorage.getItem("strikes"));
     if (!strikes) {
       strikes = 0;
     }
+    //check for a secret word in cookie/storage, or get a new random one
     let secret_word = localStorage.getItem("secret_word");
     if (!secret_word) {
       secret_word = get_secret_word();
     }
+    //get list of already guessed letters from cookie/storage
     let already_guessed = localStorage.getItem("already_guessed");
     if (!already_guessed) {
       already_guessed = "";
@@ -94,7 +98,7 @@
     }
 
     $("#show_text").text(`${show_word}`);
-    $("#my_img").attr("src", `./p_${strikes}.jpg`);
+    $("#my_img").attr("src", `./p_${strikes}.png`);
     $("#guessed_text").text(`${already_guessed}`);
 
     if (strikes >= 7) {
