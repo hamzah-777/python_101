@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="m-3">
+        <h1>hello</h1>
+
+        <button id="printBtn">Print</button>
+        <br />
+        <button id="refreshBtn">Refresh 🔄</button>
+        <br />
+        <br />
+
+        <input type="text" id="itemInput" class="form-control" placeholder="Add a new item" />
+
+        <button id="addItemBtn" class="btn mx-1" style="color: rgb(255, 255, 255); background-color: blueviolet">
+            Add Item
+        </button>
+        <br />
+        <br />
+        <button id="delete_btn">Delete ALL Items </button>
+
+        <br /> <br />
+        <div id="my_items">
+            Your items will go here
+        </div>
+
+        <div class="row">
+            <div class="col-4 text-info">HI</div>
+            <div class="col-6 text-danger">false</div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-info">item name</div>
+            <div class="col-6 text-danger">item completion</div>
+        </div>
+
+        <br /><br />
+        <pre>
+        [2, 5, 6] << array of numbers
+        [6.54, 454.454 , -4.3] << array of decimal
+        ["frere", "fdfsdfd"] << array of stings
+
+        [343, 53543.5445, "fdfsdfd"] << array of mixed type varaibles
+
+        [ {"id" : 343, "text": "hi"},  {"id" : 343, "text": "hi"} ]
+        </pre>
+
+    </div>
+    <script>
+        $("#printBtn").click(function () {
+            console.log("Print  btn clicked");
+            window.print();
+        });
+
+        $(document).ready(function () {
+            showitems();
+        })
+
+
+        $("#refreshBtn").click(function () {
+            console.log("Refresh  btn clicked");
+            location.reload();
+        });
+
+        $("#delete_btn").click(function () {
+            console.log("delete_btn btn clicked");
+            localStorage.removeItem("checklistItems");
+        });
+
+        // Add item to checklist
+        $("#addItemBtn").click(function () {
+            console.log("add");
+            var newItemText = $("#itemInput").val();
+            if (newItemText !== "") {
+                // HERE i want you to convert text to UPPERCASSE
+                let result = newItemText.toUpperCase();
+                result = result.trim();
+                // result = '*' + result;
+
+                addItemToChecklist(result);
+                $("#itemInput").val(""); // Clear the input field
+            }
+        });
+
+        function addItemToChecklist(text, completed = false) {
+            var itemId = Date.now(); // Generate a unique ID for the item
+
+            // Check for duplicates before adding an item
+            var checklistItems =
+                JSON.parse(localStorage.getItem("checklistItems")) || [];
+            var duplicateItem = checklistItems.find(function (item) {
+                return item.text === text;
+            });
+
+            if (text == "") {
+                console.log("Empty item refused.");
+                alert("Empty item refused.");
+            } else if (!duplicateItem) {
+                // Save the NEW item to local storage
+                var checklistItems =
+                    JSON.parse(localStorage.getItem("checklistItems")) || [];
+                checklistItems.push({ id: itemId, text: text, completed: completed });
+                localStorage.setItem(
+                    "checklistItems",
+                    JSON.stringify(checklistItems)
+                );
+
+                // location.reload();
+                showitems();
+
+                // draw/reload checklist items to web-page
+                // loadChecklistItems();
+            } else {
+                console.log("Duplicate item refused.");
+                alert("Duplicate item refused.");
+            }
+        }
+
+        function showitems() {
+            console.log("showing items");
+
+            var checklistItems =
+                JSON.parse(localStorage.getItem("checklistItems")) || [];
+            console.log("checklistItems", checklistItems);
+
+            var checklistItemsSTRING = JSON.stringify(checklistItems);
+
+            var allItems = 'dss';
+            checklistItems.array.forEach(element => {
+                allItems = allItems + JSON.stringify(element) + 'yooooo<br>';
+            });
+
+            $('#my_items').html(allItems);
+
+        }
+    </script>
+</body>
+
+</html>
