@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Game</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Quiz Game</h1>
+    <div id="questionDisplay"></div>
+    <div id="choicesDisplay"></div>
+    <button onclick="submitAnswer()">Submit Answer</button>
+</body>
+<script>
+    const questions = [
+        {
+            question: "What is the capital of France?",
+            choices: ["Berlin", "Madrid", "Paris", "Rome"],
+            correctAnswer: "Paris",
+        },
+        {
+            question: "Which planet is known as the Red Planet?",
+            choices: ["Mars", "Venus", "Jupiter", "Saturn"],
+            correctAnswer: "Mars",
+        },
+        {
+            question: "What is the largest mammal on Earth?",
+            choices: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+            correctAnswer: "Blue Whale",
+        },
+        // Add more questions as needed
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function displayQuestion() {
+        const questionDisplay = document.getElementById("questionDisplay");
+        const choicesDisplay = document.getElementById("choicesDisplay");
+
+        const currentQuestion = questions[currentQuestionIndex];
+
+        questionDisplay.textContent = currentQuestion.question;
+
+        choicesDisplay.innerHTML = currentQuestion.choices
+            .map((choice) => {
+                return `<label>
+                    <input type="radio" name="answer" value="${choice}">
+                    ${choice}
+                </label><br>`;
+            })
+            .join("");
+    }
+
+    function submitAnswer() {
+        const selectedAnswer = document.querySelector(
+            'input[name="answer"]:checked'
+        );
+
+        if (!selectedAnswer) {
+            alert("Please select an answer.");
+            return;
+        }
+
+        const userAnswer = selectedAnswer.value;
+        const currentQuestion = questions[currentQuestionIndex];
+
+        if (userAnswer === currentQuestion.correctAnswer) {
+            alert("Correct! Well done!");
+        } else {
+            alert(
+                `Incorrect. The correct answer is ${currentQuestion.correctAnswer}.`
+            );
+        }
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            alert("Quiz completed! Thanks for playing.");
+            // Optionally, you can reset the quiz or take some other action here.
+        }
+    }
+
+    // Initial question on page load
+    displayQuestion();
+</script>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="playerName">Player: </h1>
+        <div id="questionDisplay" class="mt-4"></div>
+        <div id="choicesDisplay" class="mt-3"></div>
+        <button id="submitAnswerBtn" class="btn btn-primary mt-3">Submit Answer</button>
+        <button id="resetScoreBtn" class="btn btn-secondary mt-3">Reset Score</button>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+<script>
+    const questions = [
+        {
+            question: 'What is the capital of France?',
+            choices: ['Berlin', 'Madrid', 'Paris', 'Rome'],
+            correctAnswer: 'Paris'
+        },
+        {
+            question: 'Which planet is known as the Red Planet?',
+            choices: ['Mars', 'Venus', 'Jupiter', 'Saturn'],
+            correctAnswer: 'Mars'
+        },
+        {
+            question: 'What is the largest mammal on Earth?',
+            choices: ['Elephant', 'Blue Whale', 'Giraffe', 'Hippopotamus'],
+            correctAnswer: 'Blue Whale'
+        }
+        // Add more questions as needed
+    ];
+
+    let currentPlayer;
+    let currentQuestionIndex = 0;
+    let playerScores = {};
+
+    function displayQuestion() {
+        const questionDisplay = $('#questionDisplay');
+        const choicesDisplay = $('#choicesDisplay');
+
+        const currentQuestion = questions[currentQuestionIndex];
+
+        questionDisplay.text(currentQuestion.question);
+
+        choicesDisplay.html(currentQuestion.choices.map(choice => {
+            return `<label class="btn btn-outline-primary">
+                    <input type="radio" name="answer" value="${choice}">
+                    ${choice}
+                </label><br>`;
+        }).join(''));
+    }
+
+    function submitAnswer() {
+        const selectedAnswer = $('input[name="answer"]:checked');
+
+        if (!selectedAnswer.length) {
+            alert('Please select an answer.');
+            return;
+        }
+
+        const userAnswer = selectedAnswer.val();
+        const currentQuestion = questions[currentQuestionIndex];
+
+        if (!playerScores[currentPlayer]) {
+            playerScores[currentPlayer] = 0;
+        }
+
+        if (userAnswer === currentQuestion.correctAnswer) {
+            playerScores[currentPlayer]++;
+        }
+
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            alert(`Quiz completed! ${currentPlayer}, your score is ${playerScores[currentPlayer]} out of ${questions.length}.`);
+            saveScores();
+            resetGame();
+        }
+    }
+
+    function resetGame() {
+        currentQuestionIndex = 0;
+        displayQuestion();
+    }
+
+    function saveScores() {
+        localStorage.setItem('playerScores', JSON.stringify(playerScores));
+    }
+
+    function loadScores() {
+        const storedScores = localStorage.getItem('playerScores');
+
+        if (storedScores) {
+            playerScores = JSON.parse(storedScores);
+        }
+    }
+
+    function updatePlayerName() {
+        currentPlayer = prompt('Enter your name:');
+        $('#playerName').text(`Player: ${currentPlayer}`);
+    }
+
+    function resetScore() {
+        if (confirm(`Are you sure you want to reset the score for ${currentPlayer}?`)) {
+            playerScores[currentPlayer] = 0;
+            saveScores();
+            alert(`${currentPlayer}'s score has been reset.`);
+            resetGame();
+        }
+    }
+
+    // Initial setup on page load
+    loadScores();
+    updatePlayerName();
+    displayQuestion();
+
+    // Event listeners
+    $('#submitAnswerBtn').click(submitAnswer);
+    $('#resetScoreBtn').click(resetScore);
+
+</script>
+
+</html>
