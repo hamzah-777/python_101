@@ -32,18 +32,19 @@
         <button id="delete_btn">Delete ALL Items </button>
 
         <br /> <br />
+        <h1>Your Items:</h1>
         <div id="my_items">
             Your items will go here
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-4 text-info">HI</div>
             <div class="col-6 text-danger">false</div>
         </div>
         <div class="row">
             <div class="col-4 text-info">item name</div>
             <div class="col-6 text-danger">item completion</div>
-        </div>
+        </div> -->
 
         <br /><br />
         <pre>
@@ -75,7 +76,8 @@
 
         $("#delete_btn").click(function () {
             console.log("delete_btn btn clicked");
-            localStorage.removeItem("checklistItems");
+            localStorage.removeItem("checklistItems")
+            showitems();
         });
 
         // Add item to checklist
@@ -134,14 +136,31 @@
                 JSON.parse(localStorage.getItem("checklistItems")) || [];
             console.log("checklistItems", checklistItems);
 
-            var checklistItemsSTRING = JSON.stringify(checklistItems);
+            // var checklistItemsSTRING = JSON.stringify(checklistItems);
 
-            var allItems = 'dss';
-            checklistItems.array.forEach(element => {
-                allItems = allItems + JSON.stringify(element) + 'yooooo<br>';
+            var all = '';
+            // checklistItems.array.forEach(element => {
+            //     all = all + JSON.stringify(element) + 'yooooo<br>';
+            // });
+
+            checklistItems.forEach(function (item) {
+                // all = all + "<h5>" + JSON.stringify(item) + "</h5>";
+                // all = all + "<h5>" + item.text + "</h5>";
+                // all = all + "<h5>" + item.completed + "</h5>";
+
+                all = all + '<div class="row">';
+
+                all = all + `<div class="col-2 text-danger"> <input type="checkbox" id=" ${item.id}" name="items" value="Bike"  ${item.completed ? 'checked' : ''}> </div>`;
+                all = all + '<div class="col-4 text-info">' + item.text + '</div>';
+
+                all = all + '<div class="col-4 text-info"><button>DELETE</button></div>';
+
+                all = all + '</div>';
+
             });
 
-            $('#my_items').html(allItems);
+
+            $('#my_items').html(all);
 
         }
     </script>

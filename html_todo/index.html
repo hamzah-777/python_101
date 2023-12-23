@@ -13,13 +13,13 @@
     <style>
         .list-group-item {
             color: rgb(237, 203, 13);
-            
+
         }
 
         .completed {
             text-decoration: line-through;
             color: rgb(255, 0, 0);
-			font-family:  monospace;
+            font-family: monospace;
         }
     </style>
 </head>
@@ -71,7 +71,9 @@
         // Handle checkbox click to mark as completed
         $(document).on("change", ".custom-control-input", function () {
             var itemId = $(this).data("item-id");
+            console.log("onchange itemId: " + itemId);
             toggleItemCompletion(itemId);
+            loadChecklistItems();
         });
 
         // Function to load checklist items from local storage
@@ -160,7 +162,9 @@
         // Handle delete item button click
         $(document).on("click", ".delete-item", function () {
             var itemId = $(this).data("item-id");
+            console.log("onchange delete: " + itemId);
             deleteItem(itemId);
+            loadChecklistItems()
         });
 
         // Function to delete an item from the checklist
