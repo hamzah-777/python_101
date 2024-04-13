@@ -1,0 +1,84 @@
+* {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.tshadow{
+  text-shadow: 0 0 3px #00CCFF;
+}
+.tshadow2{
+  color: white;
+  text-shadow: 0 0 3px #FFFFFF;
+}
+.tshadow3{
+  color: black;
+  text-shadow:  -1px 0 white, 0 1px white, 1px 0 white, 
+  0 -1px white, 0 0 5px #FFFFFF;
+}
+
+.label1 {
+  display: inline-block;
+  width: 140px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+.tbclass1 {
+  min-width:600px;
+  background-color: yellow;
+  border-radius: 25px;
+}
+
+.tbclass2 {
+  min-width:600px;
+  background-color: skyblue;
+  border-radius: 25px;
+}
+
+.tbscroll1 {
+  display: block;  height: 60vh;  overflow: scroll;
+}
+
+.formclass {
+  background-color: rgba(135, 206, 235, 0.8);
+  padding: 25px;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+.formclass2 {
+  background-color: rgba(135, 206, 235, 0.8);
+  padding: 25px;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+.formclass3 {
+  background-color: rgba(50, 50, 50, 0.5);
+  padding: 25px;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+.mymodal{
+ background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* The sticky class is added to the navbar with JS when it 
+reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+/* Add some top padding to the page content to prevent sudden quick 
+movement (as the navigation bar gets a new position at the top of 
+the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+  z-index: 5;
+}
+
+
+/*css file by Banuka. github.com-banukaknight */
