@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ TEST</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div>
+
+        <h1>MCQ TEST</h1>
+        <span id="testing">testinc content....</span> <br><br>
+
+        <h4 id="question">What is blablabla?</h4>
+
+
+
+        <div id="answers">
+            answers will go here
+        </div>
+
+    </div>
+    <br>
+
+    <button onclick="submit()">submit answer</button>
+
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+    <img src="mcq.png" alt="">
+</body>
+<script>
+    $(document).ready(function () {
+        display_question();
+    });
+
+    const questions_array = [
+        {
+            question: "What is the capital of France?",
+            choices: ["Berlin", "Madrid", "Paris", "Rome"],
+            correctAnswer: "Paris",
+        },
+        {
+            question: "Which planet is known as the Red Planet?",
+            choices: ["Mars", "Venus", "Jupiter", "Saturn"],
+            correctAnswer: "Mars",
+        },
+        {
+            question: "What is the largest mammal on Earth?",
+            choices: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+            correctAnswer: "Blue Whale",
+        },
+        // Add more questions as needed
+    ];
+
+    let current_question = 0;
+
+    function display_question() {
+        console.log('display called');
+
+        const my_question = questions_array[current_question];
+
+        // $('#testing').html(JSON.stringify(my_question));
+
+        $('#question').html(my_question['question']);
+
+        let output_choices = '';
+        for (choice of my_question['choices']) {
+            const answer = `<label>
+                    <input type="radio" name="answer" value="${choice}">
+                    ${choice}
+                </label><br>`;
+            output_choices = output_choices + answer;
+        }
+        $('#answers').html(output_choices);
+    }
+
+    function submit() {
+        console.log('submit called');
+
+        const selectedAnswer = $('input[name="answer"]:checked');
+
+        if (selectedAnswer.length === 0) {
+            alert("Please select an answer.");
+            return;
+        }
+
+        const userAnswer = selectedAnswer.val();
+        const currentQuestion = questions_array[current_question];
+
+        if (userAnswer === currentQuestion.correctAnswer) {
+            alert("Correct! Well done!");
+        } else {
+            alert(
+                `Incorrect. The correct answer is ${currentQuestion.correctAnswer}.`
+            );
+        }
+
+        current_question = current_question + 1;
+        if (current_question > 2) {
+            alert('Game over!');
+            location.reload();
+        }
+        display_question();
+    }
+
+
+</script>
+
+
+</html>

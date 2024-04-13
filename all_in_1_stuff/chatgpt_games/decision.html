@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decision Maker</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    #options {
+      margin-bottom: 20px;
+    }
+
+    #result {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Decision Maker</h1>
+  <div id="options">
+    <label for="option">Enter an option:</label>
+    <input type="text" id="option" />
+    <button onclick="addOption()">Add Option</button>
+  </div>
+  <button onclick="makeDecision()">Make Decision</button>
+  <div id="result"></div>
+
+  <script>
+    var options = [];
+
+    function addOption() {
+      var optionInput = document.getElementById('option');
+      var option = optionInput.value.trim();
+      if (option !== '') {
+        options.push(option);
+        optionInput.value = '';
+      }
+    }
+
+    function makeDecision() {
+      if (options.length > 0) {
+        var randomIndex = Math.floor(Math.random() * options.length);
+        var decision = options[randomIndex];
+        var resultDiv = document.getElementById('result');
+        resultDiv.textContent = decision;
+      }
+    }
+  </script>
+</body>
+</html>
