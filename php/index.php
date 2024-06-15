@@ -12,11 +12,13 @@
 <body>
   index  
   <br>
-  <a href="/second.php">go to second</a> <br>
+  <a href="./second.php">go to second</a> <br>
 
-  <a href="/string.php">go to string</a> <br>
-  <a href="/string_manipulation.php">go to string_manipulation</a> <br>
-  <a href="/tester.php">go to tester</a> <br>
+  <a href="./string.php">go to string</a> <br>
+  <a href="./string_manipulation.php">go to string_manipulation</a> <br>
+  <a href="./tester.php">go to tester</a> <br>
+  <a href="./password.php">go to password</a> <br>
+  <a href="./user_pass.php">go to user_pass</a> <br>
   
   
   <br><br>

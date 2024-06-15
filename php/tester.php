@@ -91,6 +91,19 @@
 
 
         $seceret_password = 'london123';
+        echo '<pre>$seceret_password';
+        echo var_dump($seceret_password);
+        echo '</pre>';
+        echo '<pre>$input_text2';
+        echo var_dump($input_text2);
+        echo '</pre>';
+
+        $lowercase_input = strtolower($input_text2);
+        echo '<pre>$input_text2-lowercase';
+        echo var_dump($lowercase_input);
+        echo '</pre>';
+
+
 
         if ( $input_text2 == $seceret_password ) {
             echo '<br>password is correct';
