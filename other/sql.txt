@@ -1,0 +1,14 @@
+BASIC SQL COMMANDS
+SQL = Squential Query Language
+SQL is used for asking questions from a mySQL DATABASE
+
+1. How to create a table (called my_table)?
+CREATE table my_table (..... mention the columns & stuff);
+
+2. How to select data of a table (called my_table)?
+SELECT * FROM my_table;
+
+3. How to insert data in to a table?
+
+
+=
